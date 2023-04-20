@@ -15,12 +15,16 @@ public class ConnectionFactory {
 		ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
 		comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost/loja_virtual?useTimezone=true&serverTimezone=UTC");
 		comboPooledDataSource.setUser("root");
-		comboPooledDataSource.setPassword("root");
+		comboPooledDataSource.setPassword("24012004");
 
 		this.dataSource = comboPooledDataSource;
 	}
 
-	public Connection recuperarConexao() throws SQLException {
+	public Connection recuperarConexao() {
+		try {
 		return this.dataSource.getConnection();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
